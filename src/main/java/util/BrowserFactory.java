@@ -7,13 +7,24 @@ public class BrowserFactory {
 
 	static WebDriver driver;
 
-	public static WebDriver startBrowser() {
+	public static WebDriver startBrowserQA() {
 		// Set Chrome Driver Properties
-		System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "./driver_New/chromedriver.exe");
 		// Create ChromeDriver object and launch chrome browser
 		WebDriver driver = new ChromeDriver();
-		driver.get("http://techfios.com/test/billing/?ng=admin/");
+		driver.get("https://tidalwavecarwash.qa.sonnyscontrols.com/login");
 		// return the driver to the test class
 		return driver;
 	}
+	
+	public static WebDriver startBrowserStage() {
+		// Set Chrome Driver Properties
+		System.setProperty("webdriver.chrome.driver", "./driver_New/chromedriver.exe");
+		// Create ChromeDriver object and launch chrome browser
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://tidalwavecarwash.stage.sonnyscontrols.com/login");
+		// return the driver to the test class
+		return driver;
+	}
+	
 }

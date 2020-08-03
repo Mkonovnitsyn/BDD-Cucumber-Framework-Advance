@@ -15,28 +15,25 @@ public class LoginPage {
 	}
 
 	// Element Library
-	@FindBy(how = How.ID, using = "username")
-	WebElement UserName;
-	@FindBy(how = How.ID, using = "password")
+	@FindBy(how = How.ID, using ="login-username")
+	WebElement Username;
+	@FindBy(how = How.ID, using = "login-password")
 	WebElement Password;
-	@FindBy(how = How.NAME, using = "login")
-	WebElement SignInButton;
+	@FindBy(how = How.XPATH, using = "//button[@type=\"submit\"]")
+	WebElement LoginButton;
 
 	// Methods to interact with the elements
-	public void login(String userName, String password) throws InterruptedException {
-		UserName.sendKeys(userName);
+	public void login(String UserName, String password) throws InterruptedException {
+		Username.sendKeys(UserName);
 		Thread.sleep(1000);
 		Password.sendKeys(password);
 		Thread.sleep(1000);
-		SignInButton.click();
+		LoginButton.click();
 	}
 
 	public String getPageTitle() {
 		return driver.getTitle();
 	}
 
-	public void close() {
-		driver.close();
-		driver.quit();		
+		
 	}
-}

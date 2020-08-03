@@ -4,37 +4,42 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class DashboardPage extends BasePage {
-	WebDriver driver; // Global
+import util.BrowserFactory;
+
+
+public class DashboardPage {
+	WebDriver driver;
+	BrowserFactory browserfactory; 
 
 	// Every Page must have a constructor to invite the driver
 	public DashboardPage(WebDriver driver) {
 		this.driver = driver;
 	}
-
+	
 	// Element Library
-	@FindBy(how = How.XPATH, using = "//h2[contains(text(),'Dashboard')]")
-	WebElement PageTitle;
-	@FindBy(how = How.LINK_TEXT, using = "Add Deposit")
-	WebElement AddDepositButton;
+	@FindBy(how = How.XPATH, using = "//*[@id=\"btn-mobile-menu-toggle\"]/i[1]")
+	WebElement SideButton;
+	@FindBy(how = How.LINK_TEXT, using = "#sidebar-dropdown-marketing")
+	WebElement Marketing;
+	@FindBy(how = How.PARTIAL_LINK_TEXT, using = "Promotions")
+	WebElement Promotions;
+	@FindBy(how = How.PARTIAL_LINK_TEXT, using = "Discounts")
+	WebElement Discounts;
 
 	// Methods to interact with the elements
-	public void waitForPage() {
-		waitForElement(PageTitle, driver);
+	public void login() throws InterruptedException {
+		ExpectedConditions.visibilityOf(SideButton);
+		SideButton.click();
+		Thread.sleep(1000);
+		Marketing.click();
+		Thread.sleep(1000);
+		Promotions.click();
+		Thread.sleep(1000);
+		Discounts.click();
+		Thread.sleep(1000);
+
 	}
 
-	public void clickOnAddDepositButton() {
-		AddDepositButton.click();
-	}
-
-	public boolean isDashboardDisplayed() {
-		try {
-			waitForPage();
-			return true;
-		} catch (Exception e) {
-
-		}
-		return false;
-	}
 }
